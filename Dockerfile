@@ -22,5 +22,5 @@ ENV OPENCLAW_WORKSPACE_DIR=/data/workspace
 # Expose the port
 EXPOSE 8080
 
-# Start OpenClaw gateway in foreground mode (no systemd in containers)
-CMD ["openclaw", "gateway", "start", "--port", "8080", "--foreground"]
+# Use "gateway run" to run in foreground (not "start" which needs systemd)
+CMD ["openclaw", "gateway", "run", "--port", "8080", "--verbose"]
