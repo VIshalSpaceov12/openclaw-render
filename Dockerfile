@@ -1,7 +1,15 @@
 FROM node:22-slim
 
-# Install OpenClaw globally
-RUN npm install -g openclaw
+# Install system dependencies needed for native modules
+RUN apt-get update && apt-get install -y \
+    python3 \
+    make \
+    g++ \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Clear any stale npm cache and install OpenClaw
+RUN rm -rf ~/.npm && npm install -g --ignore-scripts=false openclaw@latest
 
 # Create data directory for persistent storage
 RUN mkdir -p /data/.openclaw /data/workspace
