@@ -22,5 +22,8 @@ ENV OPENCLAW_WORKSPACE_DIR=/data/workspace
 # Expose the port
 EXPOSE 8080
 
-# Use "gateway run" to run in foreground (not "start" which needs systemd)
-CMD ["openclaw", "gateway", "run", "--port", "8080", "--verbose"]
+# Run gateway in foreground mode:
+#   --dev              = create config + workspace if missing
+#   --allow-unconfigured = skip gateway.mode=local requirement
+#   --bind lan         = bind to 0.0.0.0 so Render can detect the port
+CMD ["openclaw", "gateway", "run", "--port", "8080", "--dev", "--allow-unconfigured", "--bind", "lan", "--verbose"]
