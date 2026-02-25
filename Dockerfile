@@ -18,6 +18,7 @@ RUN mkdir -p /data/.openclaw /data/workspace
 ENV PORT=8080
 ENV OPENCLAW_STATE_DIR=/data/.openclaw
 ENV OPENCLAW_WORKSPACE_DIR=/data/workspace
+ENV NODE_OPTIONS="--max-old-space-size=512"
 
 # Expose the port
 EXPOSE 8080
